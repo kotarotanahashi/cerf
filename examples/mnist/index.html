@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>Model - Cerf Documentation</title>
+	<title>MNIST - Cerf Documentation</title>
 
         <link href="../../css/bootstrap-3.0.3.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -56,12 +56,12 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Core <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
-                        <li class="active">
-                            <a href="./">Model</a>
+                        <li >
+                            <a href="../../core/model/">Model</a>
                         </li>
                     
                     </ul>
@@ -86,12 +86,12 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
-                        <li >
-                            <a href="../../examples/mnist/">MNIST</a>
+                        <li class="active">
+                            <a href="./">MNIST</a>
                         </li>
                     
                     </ul>
@@ -109,12 +109,12 @@
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                 <li >
-                    <a rel="next" href="../..">
+                    <a rel="next" href="../../layer/LogisticRegression/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../../layer/FullyConnect/">
+                    <a rel="prev" href="../../markdown/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -137,24 +137,32 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#usage-of-model">Usage of Model</a></li>
+        <li class="main active"><a href="#mnist">MNIST</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h2 id="usage-of-model">Usage of Model</h2>
-<p>Activations can either be used through an <code>Activation</code> layer, or through the <code>activation</code> argument supported by all forward layers:</p>
-<p>⋅⋅⋅Note that this line is separate, but within the same paragraph.⋅⋅</p>
-<pre><code class="python">from keras.layers.core import Activation, Dense
+<h3 id="mnist">MNIST</h3>
+<pre><code class="python">from cerf.Layer import *
+from cerf.Model import *
+from cerf.load_data import *
 
-model.add(Dense(64, 64, init='uniform'))
-model.add(Activation('tanh'))
-</code></pre>
+# load data
+datasets = load_data('mnist.pkl.gz')
+train_set_x, train_set_y = datasets[0]
+valid_set_x, valid_set_y = datasets[1]
 
-<p>is equivalent to:</p>
-<pre><code class="python">model.add(Dense(20, 64, init='uniform', activation='tanh'))
+# make neural network
+layers=[]
+layers.append(FullyConnect(n_in=28 * 28, n_out=100, activation='tanh'))
+layers.append(FullyConnect(n_in=100, n_out=50, activation='tanh'))
+layers.append(LogisticRegression(n_in=50, n_out=10))
+
+# compile model and train
+model = Model(layers)
+model.fit(train_set_x, train_set_y,validation_data=[valid_set_x,valid_set_y])
 </code></pre></div>
         </div>
 
