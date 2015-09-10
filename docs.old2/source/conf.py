@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# cerf documentation build configuration file, created by
+# coyote documentation build configuration file, created by
 # sphinx-quickstart on Thu Sep 10 23:47:56 2015.
 #
 # This file is execfile()d with the current directory set to its
@@ -56,7 +56,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'cerf'
+project = u'coyote'
 copyright = u'2015, kotaro'
 author = u'kotaro'
 
@@ -233,7 +233,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'cerf.tex', u'cerf Documentation',
+  (master_doc, 'coyote.tex', u'coyote Documentation',
    u'kotaro', 'manual'),
 ]
 
@@ -263,7 +263,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'cerf', u'cerf Documentation',
+    (master_doc, 'coyote', u'coyote Documentation',
      [author], 1)
 ]
 
@@ -277,8 +277,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'cerf', u'cerf Documentation',
-   author, 'cerf', 'One line description of project.',
+  (master_doc, 'coyote', u'coyote Documentation',
+   author, 'coyote', 'One line description of project.',
    'Miscellaneous'),
 ]
 

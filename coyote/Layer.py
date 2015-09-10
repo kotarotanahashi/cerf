@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from cerf.Activation import *
+from coyote.Activation import *
 import numpy as np
 import theano.tensor as T
 import theano

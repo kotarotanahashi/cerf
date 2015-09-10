@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from cerf.Layer import *
-from cerf.load_data import *
-from cerf.Model import *
+from coyote.Layer import *
+from coyote.load_data import *
+from coyote.Model import *
 
 
 def main():

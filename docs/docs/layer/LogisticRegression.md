@@ -1,8 +1,10 @@
-#Layer
+## Logistic Regression
 
-## Layer
+```python
+LogisticRegression(n_in, n_out)
+```
 
-cerf is a deep learning library developed for practical applications such as NLP, robotics.
+###argments
 
-## Intuitive Interface
-
+* **n_in**: number of dimension of inputs
+* **n_out**: number of dimension of outputs
