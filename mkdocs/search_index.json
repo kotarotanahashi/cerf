@@ -2,13 +2,13 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Welcome to Cerf\n\n\ncerf is a deep learning library developed for practical applications such as NLP, robotics.\n\n\nIntuitive Interface\n\n\nfrom cerf.Layer import *\nfrom cerf.Model import *\n\n# make neural network\nlayers=[]\nlayers.append(FullyConnect(n_in=28 * 28, n_out=100, activation='tanh'))\nlayers.append(FullyConnect(n_in=100, n_out=50, activation='tanh'))\nlayers.append(LogisticRegression(n_in=50, n_out=10))\n\n# compile model and train\nmodel = Model(layers)\nmodel.fit(train_set_x, train_set_y,validation_data=[valid_set_x,valid_set_y])", 
+            "text": "Welcome to Coyote\n\n\ncoyote is a deep learning library developed for practical applications such as NLP, robotics.\n\n\nIntuitive Interface\n\n\nfrom coyote.Layer import *\nfrom coyote.Model import *\n\n# make neural network\nlayers=[]\nlayers.append(FullyConnect(n_in=28 * 28, n_out=100, activation='tanh'))\nlayers.append(FullyConnect(n_in=100, n_out=50, activation='tanh'))\nlayers.append(LogisticRegression(n_in=50, n_out=10))\n\n# compile model and train\nmodel = Model(layers)\nmodel.fit(train_set_x, train_set_y,validation_data=[valid_set_x,valid_set_y])", 
             "title": "Home"
         }, 
         {
-            "location": "/#welcome-to-cerf", 
-            "text": "cerf is a deep learning library developed for practical applications such as NLP, robotics.  Intuitive Interface  from cerf.Layer import *\nfrom cerf.Model import *\n\n# make neural network\nlayers=[]\nlayers.append(FullyConnect(n_in=28 * 28, n_out=100, activation='tanh'))\nlayers.append(FullyConnect(n_in=100, n_out=50, activation='tanh'))\nlayers.append(LogisticRegression(n_in=50, n_out=10))\n\n# compile model and train\nmodel = Model(layers)\nmodel.fit(train_set_x, train_set_y,validation_data=[valid_set_x,valid_set_y])", 
-            "title": "Welcome to Cerf"
+            "location": "/#welcome-to-coyote", 
+            "text": "coyote is a deep learning library developed for practical applications such as NLP, robotics.  Intuitive Interface  from coyote.Layer import *\nfrom coyote.Model import *\n\n# make neural network\nlayers=[]\nlayers.append(FullyConnect(n_in=28 * 28, n_out=100, activation='tanh'))\nlayers.append(FullyConnect(n_in=100, n_out=50, activation='tanh'))\nlayers.append(LogisticRegression(n_in=50, n_out=10))\n\n# compile model and train\nmodel = Model(layers)\nmodel.fit(train_set_x, train_set_y,validation_data=[valid_set_x,valid_set_y])", 
+            "title": "Welcome to Coyote"
         }, 
         {
             "location": "/core/model/", 
@@ -27,27 +27,17 @@
         }, 
         {
             "location": "/layer/LogisticRegression/", 
-            "text": "Layer\n\n\nLayer\n\n\ncerf is a deep learning library developed for practical applications such as NLP, robotics.\n\n\nIntuitive Interface", 
+            "text": "Logistic Regression\n\n\nLogisticRegression(n_in, n_out)\n\n\n\n\nargments\n\n\n\n\nn_in\n: number of dimension of inputs\n\n\nn_out\n: number of dimension of outputs", 
             "title": "Logistic Regression"
         }, 
         {
-            "location": "/layer/LogisticRegression/#layer", 
-            "text": "", 
-            "title": "Layer"
-        }, 
-        {
-            "location": "/layer/LogisticRegression/#layer_1", 
-            "text": "cerf is a deep learning library developed for practical applications such as NLP, robotics.", 
-            "title": "Layer"
-        }, 
-        {
-            "location": "/layer/LogisticRegression/#intuitive-interface", 
-            "text": "", 
-            "title": "Intuitive Interface"
+            "location": "/layer/LogisticRegression/#logistic-regression", 
+            "text": "LogisticRegression(n_in, n_out)  argments   n_in : number of dimension of inputs  n_out : number of dimension of outputs", 
+            "title": "Logistic Regression"
         }, 
         {
             "location": "/examples/mnist/", 
-            "text": "MNIST\n\n\nfrom cerf.Layer import *\nfrom cerf.Model import *\nfrom cerf.load_data import *\n\n# load data\ndatasets = load_data('mnist.pkl.gz')\ntrain_set_x, train_set_y = datasets[0]\nvalid_set_x, valid_set_y = datasets[1]\n\n# make neural network\nlayers=[]\nlayers.append(FullyConnect(n_in=28 * 28, n_out=100, activation='tanh'))\nlayers.append(FullyConnect(n_in=100, n_out=50, activation='tanh'))\nlayers.append(LogisticRegression(n_in=50, n_out=10))\n\n# compile model and train\nmodel = Model(layers)\nmodel.fit(train_set_x, train_set_y,validation_data=[valid_set_x,valid_set_y])", 
+            "text": "MNIST\n\n\nfrom coyote.Layer import *\nfrom coyote.Model import *\nfrom coyote.load_data import *\n\n# load data\ndatasets = load_data('mnist.pkl.gz')\ntrain_set_x, train_set_y = datasets[0]\nvalid_set_x, valid_set_y = datasets[1]\n\n# make neural network\nlayers=[]\nlayers.append(FullyConnect(n_in=28 * 28, n_out=100, activation='tanh'))\nlayers.append(FullyConnect(n_in=100, n_out=50, activation='tanh'))\nlayers.append(LogisticRegression(n_in=50, n_out=10))\n\n# compile model and train\nmodel = Model(layers)\nmodel.fit(train_set_x, train_set_y,validation_data=[valid_set_x,valid_set_y])", 
             "title": "MNIST"
         }, 
         {
