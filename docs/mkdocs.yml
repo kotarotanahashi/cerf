@@ -1,1 +1,6 @@
-site_name: My Docs
+site_name: Cerf Documentation
+theme: readthedocs
+repo_url: https://github.com/kotarotanahashi/cerf
+pages:
+- Home: index.md
+- sub: subpage.md
