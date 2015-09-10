@@ -1,0 +1,59 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "Welcome to Cerf\n\n\ncerf is a deep learning library developed for practical applications such as NLP, robotics.\n\n\nIntuitive Interface\n\n\nfrom cerf.Layer import *\nfrom cerf.Model import *\n\n# make neural network\nlayers=[]\nlayers.append(FullyConnect(n_in=28 * 28, n_out=100, activation='tanh'))\nlayers.append(FullyConnect(n_in=100, n_out=50, activation='tanh'))\nlayers.append(LogisticRegression(n_in=50, n_out=10))\n\n# compile model and train\nmodel = Model(layers)\nmodel.fit(train_set_x, train_set_y,validation_data=[valid_set_x,valid_set_y])", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#welcome-to-cerf", 
+            "text": "cerf is a deep learning library developed for practical applications such as NLP, robotics.  Intuitive Interface  from cerf.Layer import *\nfrom cerf.Model import *\n\n# make neural network\nlayers=[]\nlayers.append(FullyConnect(n_in=28 * 28, n_out=100, activation='tanh'))\nlayers.append(FullyConnect(n_in=100, n_out=50, activation='tanh'))\nlayers.append(LogisticRegression(n_in=50, n_out=10))\n\n# compile model and train\nmodel = Model(layers)\nmodel.fit(train_set_x, train_set_y,validation_data=[valid_set_x,valid_set_y])", 
+            "title": "Welcome to Cerf"
+        }, 
+        {
+            "location": "/core/model/", 
+            "text": "Usage of Model\n\n\nActivations can either be used through an \nActivation\n layer, or through the \nactivation\n argument supported by all forward layers:\n\n\n\u22c5\u22c5\u22c5Note that this line is separate, but within the same paragraph.\u22c5\u22c5\n\n\nfrom keras.layers.core import Activation, Dense\n\nmodel.add(Dense(64, 64, init='uniform'))\nmodel.add(Activation('tanh'))\n\n\n\n\nis equivalent to:\n\n\nmodel.add(Dense(20, 64, init='uniform', activation='tanh'))", 
+            "title": "Model"
+        }, 
+        {
+            "location": "/core/model/#usage-of-model", 
+            "text": "Activations can either be used through an  Activation  layer, or through the  activation  argument supported by all forward layers:  \u22c5\u22c5\u22c5Note that this line is separate, but within the same paragraph.\u22c5\u22c5  from keras.layers.core import Activation, Dense\n\nmodel.add(Dense(64, 64, init='uniform'))\nmodel.add(Activation('tanh'))  is equivalent to:  model.add(Dense(20, 64, init='uniform', activation='tanh'))", 
+            "title": "Usage of Model"
+        }, 
+        {
+            "location": "/layer/FullyConnect/", 
+            "text": "", 
+            "title": "FullyConnect"
+        }, 
+        {
+            "location": "/layer/LogisticRegression/", 
+            "text": "Layer\n\n\nLayer\n\n\ncerf is a deep learning library developed for practical applications such as NLP, robotics.\n\n\nIntuitive Interface", 
+            "title": "Logistic Regression"
+        }, 
+        {
+            "location": "/layer/LogisticRegression/#layer", 
+            "text": "", 
+            "title": "Layer"
+        }, 
+        {
+            "location": "/layer/LogisticRegression/#layer_1", 
+            "text": "cerf is a deep learning library developed for practical applications such as NLP, robotics.", 
+            "title": "Layer"
+        }, 
+        {
+            "location": "/layer/LogisticRegression/#intuitive-interface", 
+            "text": "", 
+            "title": "Intuitive Interface"
+        }, 
+        {
+            "location": "/markdown/", 
+            "text": "collection of markdown\n\n\nCode\n\n\n\n\nvar s = \nJavaScript syntax highlighting\n;\nalert(s);\n\n\n\n\ns = \nPython syntax highlighting\n\nprint s\n\n\n\n\nNo language indicated, so no syntax highlighting.\nBut let's throw in a \nb\ntag\n/b\n.\n\n\n\n\nBlockquotes\n\n\n\n\n\n\nBlockquotes are very handy in email to emulate reply text.\nThis line is part of the same quote.\n\n\n\n\nQuote break.\n\n\n\n\nThis is a very long line that will still be quoted properly when it wraps. Oh boy let'\n\n\n\n\nLink\n\n\n\n\nPlease see the \nmodel\n for further details.\n\n\ntable\n\n\n\n\nsimple table\n\n\n\n\n\n\n\n\nFirst Header\n\n\nSecond Header\n\n\nThird Header\n\n\n\n\n\n\n\n\n\n\nContent Cell\n\n\nContent Cell\n\n\nContent Cell\n\n\n\n\n\n\nContent Cell\n\n\nContent Cell\n\n\nContent Cell\n\n\n\n\n\n\nContent Cell\n\n\nContent Cell\n\n\nContent Cell\n\n\n\n\n\n\nContent Cell\n\n\nContent Cell\n\n\nContent Cell\n\n\n\n\n\n\n\n\nset alignment\n\n\n\n\n\n\n\n\nFirst Header\n\n\nSecond Header\n\n\nThird Header\n\n\n\n\n\n\n\n\n\n\nLeft\n\n\nCenter\n\n\nRight\n\n\n\n\n\n\nLeft\n\n\nCenter\n\n\nRight", 
+            "title": "MarkDown"
+        }, 
+        {
+            "location": "/markdown/#collection-of-markdown", 
+            "text": "Code   var s =  JavaScript syntax highlighting ;\nalert(s);  s =  Python syntax highlighting \nprint s  No language indicated, so no syntax highlighting.\nBut let's throw in a  b tag /b .  Blockquotes    Blockquotes are very handy in email to emulate reply text.\nThis line is part of the same quote.   Quote break.   This is a very long line that will still be quoted properly when it wraps. Oh boy let'   Link   Please see the  model  for further details.  table   simple table     First Header  Second Header  Third Header      Content Cell  Content Cell  Content Cell    Content Cell  Content Cell  Content Cell    Content Cell  Content Cell  Content Cell    Content Cell  Content Cell  Content Cell     set alignment     First Header  Second Header  Third Header      Left  Center  Right    Left  Center  Right", 
+            "title": "collection of markdown"
+        }
+    ]
+}
