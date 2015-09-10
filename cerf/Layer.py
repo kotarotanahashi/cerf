@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from stalk.Activation import *
+from cerf.Activation import *
 import numpy as np
 import theano.tensor as T
 import theano
