@@ -1,17 +1,31 @@
-# Welcome to MkDocs
+## Welcome to Cerf Documentation
 
-For full documentation visit [mkdocs.org](http://mkdocs.org).
+cerf is a deep learning library developed for practical applications such as NLP, robotics.
 
-## Commands
+### Intuitive Interface
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
 
-## Project layout
+    from cerf.Layer import *
+    from cerf.load_data import *
+    from cerf.Model import *
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+
+    def main():
+
+        # load data
+        datasets = load_data('mnist.pkl.gz')
+        train_set_x, train_set_y = datasets[0]
+        valid_set_x, valid_set_y = datasets[1]
+
+        # make neural network
+        layers=[]
+        layers.append(FullyConnect(n_in=28 * 28, n_out=100, activation='tanh'))
+        layers.append(FullyConnect(n_in=100, n_out=50, activation='tanh'))
+        layers.append(LogisticRegression(n_in=50, n_out=10))
+
+        # compile model and train
+        model = Model(layers)
+        model.fit(train_set_x, train_set_y,validation_data=[valid_set_x,valid_set_y])
+
+    if __name__=="__main__":
+        main()
