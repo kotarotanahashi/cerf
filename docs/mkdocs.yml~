@@ -1,15 +1,8 @@
 site_name: Cerf Documentation
-theme: bootstrap
+theme: readthedocs
 repo_url: https://github.com/kotarotanahashi/cerf
 extra_javascript: ['https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML']
 
 pages:
 - Home: index.md
-- Core:
-    - 'Model': 'core/model.md'
-- Layer:
-    - 'FullyConnect': 'layer/FullyConnect.md'
-    - 'Logistic Regression': 'layer/LogisticRegression.md'
-- MarkDown: markdown.md
-
-
+- sub: subpage.md
