@@ -2,23 +2,18 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Welcome to Coyote\n\n\ncoyote is a deep learning library developed for practical applications such as NLP, robotics.\n\n\nIntuitive Interface\n\n\nfrom coyote.Layer import *\nfrom coyote.Model import *\n\n# make neural network\nlayers=[]\nlayers.append(FullyConnect(n_in=28 * 28, n_out=100, activation='tanh'))\nlayers.append(FullyConnect(n_in=100, n_out=50, activation='tanh'))\nlayers.append(LogisticRegression(n_in=50, n_out=10))\n\n# compile model and train\nmodel = Model(layers)\nmodel.fit(train_set_x, train_set_y,validation_data=[valid_set_x,valid_set_y])", 
+            "text": "Welcome to Coyote\n\n\ncoyote is a deep learning library developed for practical applications such as NLP, robotics.\n\n\nIntuitive Interface\n\n\nfrom coyote.Layer import *\nfrom coyote.Model import *\n\n# make neural network\nlayers=[]\nlayers.append(FullyConnect(n_in=28 * 28, n_out=100, activation='tanh'))\nlayers.append(FullyConnect(n_in=100, n_out=50, activation='tanh'))\nlayers.append(LogisticRegression(n_in=50, n_out=10))\n\n# compile model and train\nmodel = Model(layers)\nmodel.fit(train_set_x, train_set_y,validation_data=[valid_set_x,valid_set_y])\n\n\n\n\nPhilosophy of Coyote\n\n\n\n\nsimple\n: we provide intuitive and easy to understand interface for everyone from a beginner to a expert. \n\n\nflexible input and output\n: you can directly connect your data source such as images or text to Coyote.\n\n\ntask oriented\n: we will implements task oriented methods such as deep q-learning, sequence to sequence learning.", 
             "title": "Home"
         }, 
         {
             "location": "/#welcome-to-coyote", 
-            "text": "coyote is a deep learning library developed for practical applications such as NLP, robotics.  Intuitive Interface  from coyote.Layer import *\nfrom coyote.Model import *\n\n# make neural network\nlayers=[]\nlayers.append(FullyConnect(n_in=28 * 28, n_out=100, activation='tanh'))\nlayers.append(FullyConnect(n_in=100, n_out=50, activation='tanh'))\nlayers.append(LogisticRegression(n_in=50, n_out=10))\n\n# compile model and train\nmodel = Model(layers)\nmodel.fit(train_set_x, train_set_y,validation_data=[valid_set_x,valid_set_y])", 
+            "text": "coyote is a deep learning library developed for practical applications such as NLP, robotics.  Intuitive Interface  from coyote.Layer import *\nfrom coyote.Model import *\n\n# make neural network\nlayers=[]\nlayers.append(FullyConnect(n_in=28 * 28, n_out=100, activation='tanh'))\nlayers.append(FullyConnect(n_in=100, n_out=50, activation='tanh'))\nlayers.append(LogisticRegression(n_in=50, n_out=10))\n\n# compile model and train\nmodel = Model(layers)\nmodel.fit(train_set_x, train_set_y,validation_data=[valid_set_x,valid_set_y])  Philosophy of Coyote   simple : we provide intuitive and easy to understand interface for everyone from a beginner to a expert.   flexible input and output : you can directly connect your data source such as images or text to Coyote.  task oriented : we will implements task oriented methods such as deep q-learning, sequence to sequence learning.", 
             "title": "Welcome to Coyote"
         }, 
         {
             "location": "/core/model/", 
-            "text": "Usage of Model\n\n\nActivations can either be used through an \nActivation\n layer, or through the \nactivation\n argument supported by all forward layers:\n\n\n\u22c5\u22c5\u22c5Note that this line is separate, but within the same paragraph.\u22c5\u22c5\n\n\nfrom keras.layers.core import Activation, Dense\n\nmodel.add(Dense(64, 64, init='uniform'))\nmodel.add(Activation('tanh'))\n\n\n\n\nis equivalent to:\n\n\nmodel.add(Dense(20, 64, init='uniform', activation='tanh'))", 
+            "text": "Usage of Model\n\n\nModel()\n class creates an instance of model from the list of layer (instance of coyote.layer)\n\n\nmodel = Model(layers)\nmodel.fit(X, Y, validation_data=[valid_set_x,valid_set_y])\n\n\n\n\nmethods\n\n\n\n\nfit(self,x,y,batch_size=600,n_epochs=100,validation_data=none)\n\n\nargments\n\n\nx\n: data\n\n\ny\n: teacher label\n\n\nbatch_size\n: the number of data used for a batch process. \ndefault\n:600\n\n\nn_epochs\n: the number of loops to train models.\n\n\nvalidation_data\n: [valid_set_x,valid_set_y] list of validation data and label", 
             "title": "Model"
-        }, 
-        {
-            "location": "/core/model/#usage-of-model", 
-            "text": "Activations can either be used through an  Activation  layer, or through the  activation  argument supported by all forward layers:  \u22c5\u22c5\u22c5Note that this line is separate, but within the same paragraph.\u22c5\u22c5  from keras.layers.core import Activation, Dense\n\nmodel.add(Dense(64, 64, init='uniform'))\nmodel.add(Activation('tanh'))  is equivalent to:  model.add(Dense(20, 64, init='uniform', activation='tanh'))", 
-            "title": "Usage of Model"
         }, 
         {
             "location": "/layer/FullyConnect/", 
