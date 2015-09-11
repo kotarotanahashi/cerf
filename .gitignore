@@ -1,1 +1,5 @@
 .idea/
+.DS_Store
+lr.py
+theano_play.py
+data/
