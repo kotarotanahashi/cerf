@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>Model - Cerf Documentation</title>
+	<title>Model - Coyote Documentation</title>
 
         <link href="../../css/bootstrap-3.0.3.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -41,7 +41,7 @@
             </button>
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../..">Cerf Documentation</a>
+            <a class="navbar-brand" href="../..">Coyote Documentation</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -120,7 +120,7 @@
                 </li>
                 
                 <li>
-                    <a href="https://github.com/kotarotanahashi/cerf">
+                    <a href="https://github.com/kotarotanahashi/coyote">
                         
                             <i class="fa fa-github"></i>
                         
@@ -140,22 +140,33 @@
         <li class="main active"><a href="#usage-of-model">Usage of Model</a></li>
         
     
+        <li class="main "><a href="#methods">methods</a></li>
+        
+    
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h2 id="usage-of-model">Usage of Model</h2>
-<p>Activations can either be used through an <code>Activation</code> layer, or through the <code>activation</code> argument supported by all forward layers:</p>
-<p>⋅⋅⋅Note that this line is separate, but within the same paragraph.⋅⋅</p>
-<pre><code class="python">from keras.layers.core import Activation, Dense
-
-model.add(Dense(64, 64, init='uniform'))
-model.add(Activation('tanh'))
+<h3 id="usage-of-model">Usage of Model</h3>
+<p><code>Model()</code> class creates an instance of model from the list of layer (instance of coyote.layer)</p>
+<pre><code class="python">model = Model(layers)
+model.fit(X, Y, validation_data=[valid_set_x,valid_set_y])
 </code></pre>
 
-<p>is equivalent to:</p>
-<pre><code class="python">model.add(Dense(20, 64, init='uniform', activation='tanh'))
-</code></pre></div>
+<h3 id="methods">methods</h3>
+<ul>
+<li><code>fit(self,x,y,batch_size=600,n_epochs=100,validation_data=none)</code><ul>
+<li>argments<ul>
+<li><strong>x</strong>: data</li>
+<li><strong>y</strong>: teacher label</li>
+<li><strong>batch_size</strong>: the number of data used for a batch process. <em>default</em>:600</li>
+<li><strong>n_epochs</strong>: the number of loops to train models.</li>
+<li><strong>validation_data</strong>: [valid_set_x,valid_set_y] list of validation data and label</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></div>
         </div>
 
 	<footer class="col-md-12">

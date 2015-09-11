@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-
+import sys
+sys.path.append('../../coyote')
 from coyote.Layer import *
 from coyote.load_data import *
 from coyote.Model import *

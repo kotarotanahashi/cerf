@@ -1,16 +1,16 @@
-## Usage of Model
+### Usage of Model
 
-Activations can either be used through an `Activation` layer, or through the `activation` argument supported by all forward layers:
-
-⋅⋅⋅Note that this line is separate, but within the same paragraph.⋅⋅
-
+`Model()` class creates an instance of model from the list of layer (instance of coyote.layer)
 ```python
-from keras.layers.core import Activation, Dense
-
-model.add(Dense(64, 64, init='uniform'))
-model.add(Activation('tanh'))
+model = Model(layers)
+model.fit(X, Y, validation_data=[valid_set_x,valid_set_y])
 ```
-is equivalent to:
-```python
-model.add(Dense(20, 64, init='uniform', activation='tanh'))
-```
+###methods
+* `fit(self,x,y,batch_size=600,n_epochs=100,validation_data=none)`
+    * argments
+        * **x**: data
+        * **y**: teacher label
+        * **batch_size**: the number of data used for a batch process. *default*:600
+        * **n_epochs**: the number of loops to train models.
+        * **validation_data**: [valid_set_x,valid_set_y] list of validation data and label
+        

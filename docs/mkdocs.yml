@@ -1,6 +1,6 @@
-site_name: Cerf Documentation
+site_name: Coyote Documentation
 theme: bootstrap
-repo_url: https://github.com/kotarotanahashi/cerf
+repo_url: https://github.com/kotarotanahashi/coyote
 extra_javascript: ['https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML']
 
 pages:

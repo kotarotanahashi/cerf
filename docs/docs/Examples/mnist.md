@@ -1,9 +1,9 @@
 ### MNIST
 
 ```python
-from cerf.Layer import *
-from cerf.Model import *
-from cerf.load_data import *
+from coyote.Layer import *
+from coyote.Model import *
+from coyote.load_data import *
 
 # load data
 datasets = load_data('mnist.pkl.gz')
