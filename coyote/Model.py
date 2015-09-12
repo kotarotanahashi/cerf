@@ -4,24 +4,50 @@ import theano
 import theano.tensor as T
 
 
+
 class Model():
 
 	def __init__(self,layers):
-
 		self.x = T.matrix('x')
 		self.y = T.ivector('y')
 		self.learning_rate=0.05
 		self.layers = layers
 
-		self.layers[0].setInput(self.x)
-		print "name:%s"%self.layers[0].input.name
+
+	def fit(self,train_set_x,train_set_y,batch_size=60,n_epochs=100,validation_data=None):
+
+		self.x2 = self.x.reshape((batch_size, 1, 28, 28))
+
+		# set batch size
+		for layer in self.layers:
+			layer.set_batchsize(batch_size)
+
+		# set dimension size
+		for i,layer in enumerate(self.layers[1:]):
+			if hasattr(layer,'image_shape'):
+				print 'has image_shape'
+				layer.in_depth = self.layers[i].out_depth
+				layer.set_input_image_shape(self.layers[i].get_output_image_shape())
+			else:
+				layer.n_in = self.layers[i].n_out
+
+		# init parameters
+		for layer in self.layers:
+			layer.init_params()
+
+		# set input and output
+		self.layers[0].setInput(self.x2)
 		for i,layer in enumerate(self.layers[1:]):
 			layer.setInput(self.layers[i].get_output())
+
+
+
 		for layer in self.layers:
-			try:
-				self.params += layer.params
-			except:
-				self.params = layer.params
+			if hasattr(layer,'params'):
+				try:
+					self.params += layer.params
+				except:
+					self.params = layer.params
 		self.cost = self.layers[-1].get_cost(self.y)
 		self.grads = T.grad(self.cost, self.params)
 		self.updates = [
@@ -30,8 +56,6 @@ class Model():
 		]
 
 
-
-	def fit(self,train_set_x,train_set_y,batch_size=600,n_epochs=100,validation_data=None):
 
 		index = T.lscalar()
 		self.train_model = theano.function(
@@ -70,10 +94,10 @@ class Model():
 				cost_ij = self.train_model(minibatch_index)
 
 
-				if iter % 1000 == 0:
+				if iter % 100 == 0:
 					print 'training @ iter = ', iter
 					print "cost:%f" % cost_ij
 					if self.validate_model:
-						print "accuracy:%f" % (1.0-self.validate_model(min(minibatch_index,n_valid_batches)))
+						print "accuracy:%f" % (1.0-self.validate_model(1))
 
 

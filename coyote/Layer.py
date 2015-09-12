@@ -4,6 +4,8 @@ from coyote.Activation import *
 import numpy as np
 import theano.tensor as T
 import theano
+from theano.tensor.signal import downsample
+from theano.tensor.nnet import conv
 
 class Layer(object):
 	def __init__(self):
@@ -11,9 +13,16 @@ class Layer(object):
 		self.n_out=None
 		self.input=T.matrix()
 		self.output=None
+		self.batch_size = None
 
 	def setInput(self,pre_output):
 		self.input = pre_output
+
+	def init_params(self):
+		pass
+
+	def set_batchsize(self,batch_size):
+		self.batch_size = batch_size
 
 
 class FullyConnect(Layer):
@@ -58,13 +67,16 @@ class FullyConnect(Layer):
 
 class LogisticRegression(Layer):
 
-	def __init__(self, n_in, n_out):
+	def __init__(self, n_out):
 		super(LogisticRegression,self).__init__()
+		self.n_in = None
+		self.n_out = n_out
 
+	def init_params(self):
 		# initialize with 0 the weights W as a matrix of shape (n_in, n_out)
 		self.W = theano.shared(
 			value=np.zeros(
-				(n_in, n_out),
+				(self.n_in, self.n_out),
 				dtype=theano.config.floatX
 			),
 			name='W',
@@ -73,7 +85,7 @@ class LogisticRegression(Layer):
 		# initialize the biases b as a vector of n_out 0s
 		self.b = theano.shared(
 			value=np.zeros(
-				(n_out,),
+				(self.n_out,),
 				dtype=theano.config.floatX
 			),
 			name='b',
@@ -112,3 +124,108 @@ class LogisticRegression(Layer):
 			return T.mean(T.neq(self.y_pred, y))
 		else:
 			raise NotImplementedError()
+
+class ImageInput(Layer):
+	def __init__(self, out_sx, out_sy, out_depth=1):
+		super(ImageInput,self).__init__()
+		#self.input = T.matrix()
+		self.input = None
+		self.out_depth = out_depth
+		self.out_sx = out_sx
+		self.out_sy = out_sy
+		self.image_shape = None
+
+	def set_batchsize(self,batch_size):
+		self.batch_size = batch_size
+		self.image_shape = (batch_size, self.out_depth, self.out_sx, self.out_sy)
+
+
+	def get_output(self):
+		return self.input
+
+	def get_output_image_shape(self):
+		return self.image_shape
+
+
+
+
+class LeNetConvPoolLayer(Layer):
+	"""Pool Layer of a convolutional network """
+
+	def __init__(self, out_depth, filter_size, poolsize=(2, 2)):
+		super(LeNetConvPoolLayer,self).__init__()
+		self.image_shape = None
+		self.in_depth = None
+		self.input = T.matrix()
+		self.rng = np.random.RandomState(4711)
+
+		self.poolsize = poolsize
+		self.filter_size = filter_size
+		self.out_depth = out_depth
+
+	def init_params(self):
+		self.filter_shape = (self.out_depth, self.in_depth, self.filter_size, self.filter_size)
+		# there are "num input feature maps * filter height * filter width"
+		# inputs to each hidden unit
+		fan_in = np.prod(self.filter_shape[1:])
+		# each unit in the lower layer receives a gradient from:
+		# "num output feature maps * filter height * filter width" /
+		#   pooling size
+		fan_out = (self.filter_shape[0] * np.prod(self.filter_shape[2:]) /
+					np.prod(self.poolsize))
+		# initialize weights with random weights
+		W_bound = np.sqrt(6. / (fan_in + fan_out))
+		self.W = theano.shared(
+			np.asarray(
+				self.rng.uniform(low=-W_bound, high=W_bound, size=self.filter_shape),
+				dtype=theano.config.floatX
+			),
+			borrow=True
+		)
+
+		# the bias is a 1D tensor -- one bias per output feature map
+		b_values = np.zeros((self.filter_shape[0],), dtype=theano.config.floatX)
+		self.b = theano.shared(value=b_values, borrow=True)
+
+		# store parameters of this layer
+		self.params = [self.W, self.b]
+
+	def set_input_image_shape(self, image_shape):
+		self.image_shape = image_shape
+
+	def get_output_image_shape(self):
+		conv_out_shape = self.image_shape[2] - self.filter_size + 1, self.image_shape[3] - self.filter_size + 1
+		return self.batch_size, self.out_depth, conv_out_shape[0]/self.poolsize[0], conv_out_shape[1]/self.poolsize[1]
+
+	def get_output(self):
+		# convolve input feature maps with filters
+		print "self.image_shape",self.image_shape
+		self.conv_out = conv.conv2d(
+			input=self.input,
+			filters=self.W,
+			filter_shape=self.filter_shape,
+			image_shape=self.image_shape
+		)
+
+		# downsample each feature map individually, using maxpooling
+		self.pooled_out = downsample.max_pool_2d(
+			input=self.conv_out,
+			ds=self.poolsize,
+			ignore_border=True
+		)
+
+		return T.tanh(self.pooled_out + self.b.dimshuffle('x', 0, 'x', 'x'))
+
+class Flattern(Layer):
+	def __init__(self):
+		super(Flattern,self).__init__()
+		self.input = T.matrix()
+		self.image_shape = None
+		self.in_depth = None
+
+	def set_input_image_shape(self, image_shape):
+		self.image_shape = image_shape
+		self.n_out = self.image_shape[2] * self.image_shape[3] * self.in_depth
+
+	def get_output(self):
+		return self.input.flatten(2)
